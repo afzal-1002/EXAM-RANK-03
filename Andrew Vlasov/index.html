@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Canvas Experience</title>
+    <meta name="description"
+        content="A beautiful, interactive full-screen canvas demonstration with smooth animations.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="score-counter">lines typed: 0</div>
+    <div id="file-controls">
+        <input type="file" id="file-input" accept=".c,.h,.txt" style="display: none;">
+        <label for="file-input" id="file-label">Load Source Code</label>
+    </div>
+    <div id="input-container">
+        <input type="text" id="letter-input" autocomplete="off" placeholder="Type a letter..." maxlength="500">
+    </div>
+    <div id="completion-message">LEVEL COMPLETED!</div>
+    <canvas id="main-canvas"></canvas>
+    <script src="script.js"></script>
+</body>
+
+</html>

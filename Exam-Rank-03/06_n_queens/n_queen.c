@@ -1,72 +1,81 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void	print_board(int board[], int n)
+int	ft_abs(int n)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < n)
-	{
-		j = 0;
-		while (j < n)
-		{
-			if (board[i] == j)
-				write(1, "Q ", 2);
-			else
-				write(1, ". ", 2);
-			j++;
-		}
-		write(1, "\n", 1);
-		i++;
-	}
-	write(1, "\n", 1);
+    if (n < 0)
+        return (-n);
+    return (n);
 }
 
-int	is_safe(int board[], int row, int col)
+void	print_solution(int pos[], int n)
 {
-	int	i;
+    int		i;
+    char	c;
 
-	i = 0;
-	while (i < row)
-	{
-		if (board[i] == col)
-			return (0);
-		if (abs(board[i] - col) == abs(i - row))
-			return (0);
-		i++;
-	}
-	return (1);
+    i = 0;
+    while (i < n)
+    {
+        c = pos[i] + '0';
+        write(1, &c, 1);
+        if (i + 1 < n)
+            write(1, " ", 1);
+        i++;
+    }
+    write(1, "\n", 1);
 }
 
-void	solve(int board[], int row, int n)
+int	is_safe(int pos[], int col, int row)
 {
-	int	col;
+    int	c;
 
-	if (row == n)
-	{
-		print_board(board, n);
-		return ;
-	}
-	col = 0;
-	while (col < n)
-	{
-		if (is_safe(board, row, col))
-		{
-			board[row] = col;
-			solve(board, row + 1, n);
-		}
-		col++;
-	}
+    c = 0;
+    while (c < col)
+    {
+        if (pos[c] == row)
+            return (0);
+        if (ft_abs(pos[c] - row) == ft_abs(c - col))
+            return (0);
+        c++;
+    }
+    return (1);
 }
 
-int	main(void)
+void solve(int pos[], int col, int size)
 {
-	int	board[10];
-	int	n;
+    int row;
 
-	n = 4;
-	solve(board, 0, n);
-	return (0);
+    if (col == size)
+    {
+        print_solution(pos, size);
+        return;
+    }
+    row = 0;
+    while (row < size)
+    {
+        if (is_safe(pos, col, row))
+        {
+            pos[col] = row;
+            solve(pos, col + 1, size);
+        }
+        row++;
+    }
+}
+
+int	main(int ac, char **av)
+{
+    int	*pos;
+    int	n;
+
+    if (ac != 2)
+        return (1);
+    n = atoi(av[1]);
+    if (n <= 0)
+        return (0);
+    pos = (int *)malloc(sizeof(int) * n);
+    if (!pos)
+        return (1);
+    solve(pos, 0, n);
+    free(pos);
+    return (0);
 }

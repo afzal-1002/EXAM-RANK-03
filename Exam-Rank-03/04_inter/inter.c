@@ -26,7 +26,7 @@ void	ft_inter(char *s1, char *s2)
 {
 	char	buffer[999];
 	int		i = 0;
-	int j = 0;
+	int 	j = 0;
 
 	if (s1 && s2)
 	{
@@ -36,6 +36,7 @@ void	ft_inter(char *s1, char *s2)
 			// if (ft_check(*s1, s2) && ft_check(*s1, buffer) == 0)
 			if (ft_check(s1[i], s2) && ft_check(s1[i], buffer) == 0)
 				buffer[j++] = s1[i];
+			i++;
 		}
 	}
 	buffer[i] = '\0';

@@ -30,12 +30,12 @@ void	generate(char *str, char *result, int *used, int pos, int len)
 		if (used[i])
 			continue ;
 
-		used[i] = 1;              // Pick
-		result[pos] = str[i];     // Use
+		used[i] = 1;
+		result[pos] = str[i];
 
-		generate(str, result, used, pos + 1, len); // Recurse
+		generate(str, result, used, pos + 1, len);
 
-		used[i] = 0;              // Unuse (Backtrack)
+		used[i] = 0;
 	}
 }
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 {
 	int	len;
 	char	result[100];
-	int	used[100] = {0};
+	int	    used[100] = {0};
 
 	if (argc != 2)
 		return (1);
